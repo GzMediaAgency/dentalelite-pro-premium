@@ -7,7 +7,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { heroContent, team } from "@/data/active";
+import { heroContent } from "@/data/active";
 import { StarRating } from "@/components/shared/star-rating";
 import { VerifiedBadge } from "@/components/shared/verified-badge";
 import { Magnetic } from "@/components/shared/magnetic";
@@ -49,8 +49,6 @@ const lineVariants: Variants = {
     transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
   },
 };
-
-const founder = team[0];
 
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
@@ -217,18 +215,6 @@ export function Hero() {
               />
             </div>
           </div>
-
-          {founder && (
-            <div className="glass absolute -top-6 -right-6 flex items-center gap-3 rounded-2xl px-4 py-3 shadow-float">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-gradient text-sm font-semibold text-primary-foreground">
-                {founder.initials}
-              </span>
-              <div>
-                <p className="text-xs font-semibold text-primary-foreground">{founder.name}</p>
-                <p className="text-[11px] text-primary-foreground/70">{founder.role}</p>
-              </div>
-            </div>
-          )}
 
           <div className="glass absolute -bottom-6 -left-6 rounded-2xl px-5 py-4 shadow-float">
             <p className="text-display-sm font-semibold text-primary-foreground">
