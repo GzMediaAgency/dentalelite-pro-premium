@@ -42,7 +42,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
   }
 
   return (
-    <Reveal direction="up" delay={index * 0.08}>
+    <Reveal direction="up" delay={index * 0.08} className="h-full">
       <motion.div
         ref={setRefs}
         onPointerMove={handlePointerMove}
@@ -50,7 +50,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
         animate={{ rotateX: tilt.x, rotateY: tilt.y }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
         style={{ transformPerspective: 900 }}
-        className="spotlight-card border-gradient group relative flex flex-col overflow-hidden rounded-xl shadow-tinted transition-shadow duration-300 hover:shadow-float"
+        className="spotlight-card border-gradient group relative flex h-full flex-col overflow-hidden rounded-xl shadow-tinted transition-shadow duration-300 hover:shadow-float"
       >
         <div className="relative h-48 w-full overflow-hidden">
           <Image
