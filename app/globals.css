@@ -1,0 +1,268 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+@plugin "tailwindcss-animate";
+
+/**
+ * app/globals.css
+ * ---------------------------------------------------------------------------
+ * DESIGN SYSTEM — DentalElite Pro (Tailwind CSS v4, config CSS-first)
+ *
+ * Structure :
+ *  1. @custom-variant dark          → active le dark mode piloté par classe
+ *                                      (compatible next-themes, branché à
+ *                                      l'Étape 3 - Layout principal)
+ *  2. :root / .dark                 → tokens de couleur bruts (source de
+ *                                      vérité, alignés sur config/site.ts)
+ *  3. @theme inline                 → expose ces tokens comme utilitaires
+ *                                      Tailwind (bg-primary, text-accent,
+ *                                      rounded-xl, font-display, etc.)
+ *  4. @layer base                   → styles de base (typographie, focus,
+ *                                      scrollbar, sélection)
+ * ---------------------------------------------------------------------------
+ */
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* --- Identité de marque (source : config/site.ts) --------------------- */
+  --color-primary: #0b2545; /* Bleu profond */
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #2f80ed; /* Bleu médical */
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #d4af37; /* Or premium */
+  --color-accent-foreground: #0b2545;
+  --color-surface: #ffffff; /* Blanc */
+
+  /* --- Surfaces & texte --------------------------------------------------- */
+  --color-background: #f7f9fc;
+  --color-foreground: #2d3748;
+  --color-card: #ffffff;
+  --color-card-foreground: #2d3748;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #2d3748;
+  --color-muted: #eef2f7;
+  --color-muted-foreground: #64748b;
+  --color-border: #e2e8f0;
+  --color-input: #e2e8f0;
+  --color-ring: #2f80ed;
+
+  /* --- États sémantiques --------------------------------------------------- */
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #16a34a;
+  --color-success-foreground: #ffffff;
+  --color-warning: #d97706;
+  --color-warning-foreground: #ffffff;
+
+  /* --- Rayons — "cartes avec coins arrondis 20px" (fiche stratégique) ---- */
+  --radius-sm: 0.5rem; /* 8px  — inputs, petits badges */
+  --radius-md: 0.75rem; /* 12px — boutons */
+  --radius-lg: 1rem; /* 16px — cartes standards */
+  --radius-xl: 1.25rem; /* 20px — cartes premium (services, témoignages) */
+  --radius-2xl: 1.75rem; /* 28px — blocs héro, cartes flottantes */
+  --radius-full: 9999px;
+
+  /* --- Ombres douces -------------------------------------------------------- */
+  --shadow-soft: 0 2px 8px -2px rgb(11 37 69 / 0.06), 0 4px 16px -4px rgb(11 37 69 / 0.08);
+  --shadow-premium: 0 8px 30px -8px rgb(11 37 69 / 0.14), 0 2px 8px -2px rgb(11 37 69 / 0.08);
+  --shadow-float: 0 20px 60px -12px rgb(11 37 69 / 0.22);
+
+  /* --- Rythme vertical des sections ------------------------------------------ */
+  --spacing-section-y: 6rem;
+  --spacing-section-y-lg: 8rem;
+}
+
+.dark {
+  --color-primary: #2f80ed;
+  --color-primary-foreground: #0b1220;
+  --color-secondary: #5b9bf5;
+  --color-secondary-foreground: #0b1220;
+  --color-accent: #e4c25f;
+  --color-accent-foreground: #0b1220;
+  --color-surface: #101826;
+
+  --color-background: #0b1220;
+  --color-foreground: #e5eaf2;
+  --color-card: #121b2b;
+  --color-card-foreground: #e5eaf2;
+  --color-popover: #121b2b;
+  --color-popover-foreground: #e5eaf2;
+  --color-muted: #1a2436;
+  --color-muted-foreground: #94a3b8;
+  --color-border: #1f2937;
+  --color-input: #1f2937;
+  --color-ring: #5b9bf5;
+
+  --shadow-soft: 0 2px 8px -2px rgb(0 0 0 / 0.3), 0 4px 16px -4px rgb(0 0 0 / 0.35);
+  --shadow-premium: 0 8px 30px -8px rgb(0 0 0 / 0.45), 0 2px 8px -2px rgb(0 0 0 / 0.3);
+  --shadow-float: 0 20px 60px -12px rgb(0 0 0 / 0.55);
+}
+
+@theme inline {
+  /* Couleurs exposées comme utilitaires (bg-primary, text-foreground...) */
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-foreground: var(--color-secondary-foreground);
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-foreground);
+  --color-surface: var(--color-surface);
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-card: var(--color-card);
+  --color-card-foreground: var(--color-card-foreground);
+  --color-popover: var(--color-popover);
+  --color-popover-foreground: var(--color-popover-foreground);
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
+  --color-border: var(--color-border);
+  --color-input: var(--color-input);
+  --color-ring: var(--color-ring);
+  --color-destructive: var(--color-destructive);
+  --color-destructive-foreground: var(--color-destructive-foreground);
+  --color-success: var(--color-success);
+  --color-success-foreground: var(--color-success-foreground);
+  --color-warning: var(--color-warning);
+  --color-warning-foreground: var(--color-warning-foreground);
+
+  /* Rayons */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-full: var(--radius-full);
+
+  /* Ombres */
+  --shadow-soft: var(--shadow-soft);
+  --shadow-premium: var(--shadow-premium);
+  --shadow-float: var(--shadow-float);
+
+  /* Rythme de sections */
+  --spacing-section-y: var(--spacing-section-y);
+  --spacing-section-y-lg: var(--spacing-section-y-lg);
+
+  /* Typographie de marque (fichiers dans app/fonts.ts) */
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+
+  /* Échelle typographique — display large pour le Hero, échelle éditoriale
+     pour le reste. Line-height et tracking resserrés sur les grands corps
+     pour un rendu "presse premium". */
+  --text-display-2xl: 4.5rem;
+  --text-display-2xl--line-height: 1.05;
+  --text-display-2xl--letter-spacing: -0.02em;
+
+  --text-display-xl: 3.5rem;
+  --text-display-xl--line-height: 1.08;
+  --text-display-xl--letter-spacing: -0.02em;
+
+  --text-display-lg: 2.75rem;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.015em;
+
+  --text-display-md: 2.25rem;
+  --text-display-md--line-height: 1.15;
+  --text-display-md--letter-spacing: -0.01em;
+
+  --text-display-sm: 1.75rem;
+  --text-display-sm--line-height: 1.2;
+  --text-display-sm--letter-spacing: -0.01em;
+
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.4;
+  --text-eyebrow--letter-spacing: 0.12em;
+
+  /* Animations d'accordéon (shadcn) exposées pour Tailwind v4 */
+  --animate-accordion-down: accordion-down 0.25s ease-out;
+  --animate-accordion-up: accordion-up 0.25s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans), sans-serif;
+    font-feature-settings: "cv11", "ss01";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), serif;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4 {
+    color: var(--color-foreground);
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-accent) 35%, transparent);
+    color: var(--color-primary);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Respect des préférences d'accessibilité : réduction des animations */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Scrollbar premium (WebKit) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-muted-foreground);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-background);
+  }
+}
